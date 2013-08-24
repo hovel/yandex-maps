@@ -6,28 +6,25 @@
 </head>
 <body>
 <div id="YMapsID" style="width:600px;height:600px"></div>
-<script src="http://api-maps.yandex.ru/2.0/?lang=ru-RU" type="text/javascript"></script>
+<script src="http://api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
 <script type="text/javascript">
+  ymaps.ready(function () {
+    var map = new ymaps.Map("YMapsID", {
+              center: [{{ latitude }}, {{ longitude }}],
+              zoom: {{ zoom }},
+              type: "yandex#satellite"
+            }
+    );
+    map.balloon.open(
+            [{{ longitude }}, {{ latitude }}], {
+              content: {{ address }}
+            }, {
+              closeButton: true
+            }
+    );
 
-  window.onload = function () {
-    ymaps.ready(function () {
-      var map = new ymaps.Map("YMapsID", {
-                center: [{{ longitude }}, {{ latitude }}],
-                zoom: {{ zoom }},
-                type: "yandex#satellite"
-              }
-      );
-      map.balloon.open(
-              [{{ longitude }}, {{ latitude }}], {
-                content: {{ address }}
-              }, {
-                closeButton: true
-              }
-      );
-
-      map.controls.add("mapTools").add("zoomControl").add("scaleLine");
-    });
-  }
+    map.controls.add("mapTools").add("zoomControl").add("scaleLine");
+  });
 </script>
 </body>
 </html>

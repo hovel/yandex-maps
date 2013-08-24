@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 
 from django.shortcuts import get_object_or_404
-from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from yandex_maps.models import MapAndAddress
