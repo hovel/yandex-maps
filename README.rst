@@ -22,28 +22,23 @@ yandex-maps
 ::
 
     >>> from yandex_maps import api
-    >>> api_key = 'my_api_key'
-    >>> pos = api.geocode(api_key, u'Санкт-Петербург, Бумажная 4')
+    >>> pos = api.geocode(u'Санкт-Петербург, Бумажная 4')
     >>> print pos
     (u'30.271446', u'59.903300')
 
     >>> api.get_map_url(api_key, pos[0], pos[1], 13, 200, 300)
-    http://static-maps.yandex.ru/1.x/?ll=30.2714460,59.9033000&size=200,300&z=12&l=map&pt=30.2714460,59.9033000&key=my_api_key
+    http://static-maps.yandex.ru/1.x/?ll=30.2714460,59.9033000&size=200,300&z=12&l=map&pt=30.2714460,59.9033000
 
 
 Интеграция с django
 ===================
 
-1. В settings.py добавляем переменную YANDEX_MAPS_API_KEY со
-   своим API-ключом от Яндекса. Ключ можно получить тут:
-   http://api.yandex.ru/maps/form.xml/
+1. 'yandex_maps' добавляем в INSTALLED_APPS
 
-2. 'yandex_maps' добавляем в INSTALLED_APPS
-
-3. Выполняем ``./manage.py syncdb`` (или ``./manage.py migrate``,
+2. Выполняем ``./manage.py syncdb`` (или ``./manage.py migrate``,
    если используется south)
 
-4. В шаблоне теперь можно использовать тег ``yandex_map``::
+3. В шаблоне теперь можно использовать тег ``yandex_map``::
 
            {% load yandex_maps_tags %}
 
