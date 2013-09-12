@@ -5,7 +5,7 @@ Yandex.Maps API wrapper
 """
 import json
 import urllib
-from yandex_maps import http
+import urllib2
 
 STATIC_MAPS_URL = 'http://static-maps.yandex.ru/1.x/?'
 HOSTED_MAPS_URL = 'http://maps.yandex.ru/?'
@@ -53,7 +53,7 @@ def geocode(address, timeout=2):
 
 def _get_geocode_json(address, timeout=2):
     url = _get_geocode_url(address)
-    status_code, response = http.request('GET', url, timeout=timeout)
+    response = urllib2.urlopen(url, timeout=timeout).read()
     return response
 
 
