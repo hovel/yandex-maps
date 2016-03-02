@@ -1,13 +1,16 @@
-#coding: utf-8
+# -*- coding: utf-8 -*-
 from django import template
 from django.contrib.gis.geos import Point
-from django.utils.html import conditional_escape
+from django.utils.html import conditional_escape, format_html
+from django.utils.safestring import mark_safe
+
 from yandex_maps.models import MapAndAddress, get_static_map_url
 from yandex_maps.api import get_external_map_url
 
 register = template.Library()
 
 # FIXME: этот код ужасен :)
+
 
 def _url_for(address, external, *args, **kwargs):
     if isinstance(address, Point):
@@ -43,6 +46,7 @@ def static_map_url(address, params=None):
     data = [] if params is None else params.split(",")
     return _url_for(address, False, *data)
 
+
 @register.filter
 def external_map_url(address, zoom=None):
     '''Фильтр, который возвращает URL карты у яндекса.
@@ -76,5 +80,6 @@ def yandex_map(address, width, height, zoom=14, attrs=''):
 
     '''
     url = _url_for(address, False, width, height, zoom)
-    return "<img src='%s' width='%s' height='%s' alt='%s' %s />" % (
-             url, width, height, conditional_escape(address), attrs)
+    return format_html(u"<img src='{}' width='{}' height='{}' alt='{}' {} />",
+                       url, width, height, conditional_escape(address),
+                       mark_safe(attrs))

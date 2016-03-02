@@ -1,7 +1,6 @@
-#coding: utf-8
+# -*- coding: utf-8 -*-
 from unittest import TestCase
 from yandex_maps.api import _get_coords, get_map_url, geocode
-from yandex_maps import api
 
 RESPONSE = u"""
 {"response":
@@ -18,7 +17,7 @@ RESPONSE = u"""
                               "boundedBy": {"Envelope":
                                                 {"lowerCorner": "37.182743 55.490667",
                                                  "upperCorner": "37.964969 56.01074"}},
-                              "Point": {"pos": "37.617761 55.755773"}}}]}}}
+                              "Point": {"pos": "37.620393 55.75396"}}}]}}}
 """.encode('utf8')
 
 UNKNOWN_ADDRESS = u'''
@@ -30,13 +29,13 @@ UNKNOWN_ADDRESS = u'''
          "featureMember": []}}}
 '''.encode('utf8')
 
-COORDS = (u'37.617761', u'55.755773')
-MAP_URL = 'http://static-maps.yandex.ru/1.x/?ll=37.6177610,55.7557730&size=200,300&z=5&l=map&pt=37.6177610,55.7557730'
+COORDS = (u'37.620393', u'55.75396')
+MAP_URL = 'http://static-maps.yandex.ru/1.x/?ll=37.6203930,55.7539600&size=200,300&z=5&l=map&pt=37.6203930,55.7539600'
 
 
 class GeocodeTest(TestCase):
     def test_geocode(self):
-        pos = api.geocode("Москва")
+        pos = geocode("Москва")
         self.assertEqual(pos, (COORDS[0], COORDS[1]))
 
     def test_parsing(self):

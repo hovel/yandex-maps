@@ -1,37 +1,22 @@
-# encoding: utf-8
-import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-class Migration(SchemaMigration):
-
-    def forwards(self, orm):
-        
-        # Adding model 'MapAndAddress'
-        db.create_table('yandex_maps_mapandaddress', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('address', self.gf('django.db.models.fields.CharField')(db_index=True, max_length=255, blank=True)),
-            ('longtitude', self.gf('django.db.models.fields.FloatField')(null=True, blank=True)),
-            ('latitude', self.gf('django.db.models.fields.FloatField')(null=True, blank=True)),
-        ))
-        db.send_create_signal('yandex_maps', ['MapAndAddress'])
+from django.db import migrations, models
 
 
-    def backwards(self, orm):
-        
-        # Deleting model 'MapAndAddress'
-        db.delete_table('yandex_maps_mapandaddress')
+class Migration(migrations.Migration):
 
+    dependencies = [
+    ]
 
-    models = {
-        'yandex_maps.mapandaddress': {
-            'Meta': {'object_name': 'MapAndAddress'},
-            'address': ('django.db.models.fields.CharField', [], {'db_index': 'True', 'max_length': '255', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'latitude': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'longtitude': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'})
-        }
-    }
-
-    complete_apps = ['yandex_maps']
+    operations = [
+        migrations.CreateModel(
+            name='MapAndAddress',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('address', models.CharField(db_index=True, max_length=255, verbose_name='\u0410\u0434\u0440\u0435\u0441', blank=True)),
+                ('longitude', models.FloatField(null=True, verbose_name='\u0414\u043e\u043b\u0433\u043e\u0442\u0430', blank=True)),
+                ('latitude', models.FloatField(null=True, verbose_name='\u0428\u0438\u0440\u043e\u0442\u0430', blank=True)),
+            ],
+        ),
+    ]

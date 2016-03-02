@@ -17,7 +17,7 @@ setup(
     description = 'Yandex.Maps API python wrapper with optional django integration.',
     long_description = open('README.rst').read().decode('utf8') + open('CHANGES.rst').read().decode('utf8'),
     license = 'MIT license',
-    requires = ['django (>=1.2)'],
+    requires = ['django (>=1.8)'],
 
     packages=['yandex_maps', 'yandex_maps.templatetags', 'yandex_maps.migrations'],
     package_data={'yandex_maps': ['templates/yandex_maps/*']},

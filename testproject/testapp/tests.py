@@ -1,4 +1,4 @@
-#coding: utf-8
+# -*- coding: utf-8 -*-
 import mock
 from django.core.urlresolvers import reverse
 from django.test import TestCase
