@@ -37,7 +37,8 @@ MAP_URL = 'https://static-maps.yandex.ru/1.x/?ll=37.6203930,55.7539600&size=200,
 class GeocodeTest(TestCase):
     def test_geocode(self):
         pos = geocode("Москва")
-        self.assertEqual(pos, (COORDS[0], COORDS[1]))
+        self.assertEqual(pos[0][:5], COORDS[0][:5])
+        self.assertEqual(pos[1][:5], COORDS[1][:5])
 
     def test_parsing(self):
         self.assertEqual(_get_coords(RESPONSE), COORDS)
