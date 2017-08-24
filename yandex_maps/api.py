@@ -1,10 +1,11 @@
 # coding: utf-8
+from __future__ import unicode_literals
 
 """
 Yandex.Maps API wrapper
 """
 import json
-from django.utils.six import string_types
+from django.utils.six import text_type, binary_type
 from django.utils.six.moves.urllib.parse import urlencode
 from django.utils.six.moves.urllib.request import urlopen
 
@@ -59,13 +60,15 @@ def _get_geocode_json(address, timeout=2):
 
 
 def _get_geocode_url(address):
-    if isinstance(address, string_types):
+    if isinstance(address, text_type):
         address = address.encode('utf8')
     params = urlencode({'geocode': address, 'format': 'json', 'results': 1})
     return GEOCODE_URL + params
 
 
 def _get_coords(response):
+    if isinstance(response, binary_type):
+        response = response.decode('utf8')
     try:
         geocode_data = json.loads(response)
         pos_data = geocode_data['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos']

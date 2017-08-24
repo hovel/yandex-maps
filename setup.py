@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 from distutils.core import setup
 
-# hack for utf8 long_description support
-import sys
-reload(sys).setdefaultencoding("UTF-8")
-
 version='0.7'
 
 setup(
@@ -15,7 +11,7 @@ setup(
     url = 'https://bitbucket.org/kmike/yandex-maps/',
 
     description = 'Yandex.Maps API python wrapper with optional django integration.',
-    long_description = open('README.rst').read().decode('utf8') + open('CHANGES.rst').read().decode('utf8'),
+    long_description = open('README.rst').read() + open('CHANGES.rst').read(),
     license = 'MIT license',
     requires = ['django (>=1.8)'],
 
@@ -31,8 +27,9 @@ setup(
         'Natural Language :: Russian',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
 )
