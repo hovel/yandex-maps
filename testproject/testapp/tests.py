@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import mock
 from django.core.urlresolvers import reverse
 from django.test import TestCase
@@ -22,4 +23,4 @@ class YandexMapTest(TestCase):
     def test_tags_and_filters(self, geocode):
         geocode.return_value = '60.611084', '56.834545'
         response = self._check_url('index')
-        assert response.content.count("src='https://static-maps.yandex.ru/1.x/?ll=60.6110840,56.8345450") == 2, response
+        assert response.content.count(b"src='https://static-maps.yandex.ru/1.x/?ll=60.6110840,56.8345450") == 2, response
