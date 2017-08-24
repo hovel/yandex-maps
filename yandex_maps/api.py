@@ -4,12 +4,13 @@
 Yandex.Maps API wrapper
 """
 import json
-import urllib
-import urllib2
+from django.utils.six import string_types
+from django.utils.six.moves.urllib.parse import urlencode
+from django.utils.six.moves.urllib.request import urlopen
 
-STATIC_MAPS_URL = 'http://static-maps.yandex.ru/1.x/?'
-HOSTED_MAPS_URL = 'http://maps.yandex.ru/?'
-GEOCODE_URL = 'http://geocode-maps.yandex.ru/1.x/?'
+STATIC_MAPS_URL = 'https://static-maps.yandex.ru/1.x/?'
+HOSTED_MAPS_URL = 'https://maps.yandex.ru/?'
+GEOCODE_URL = 'https://geocode-maps.yandex.ru/1.x/?'
 
 
 def _format_point(longitude, latitude):
@@ -39,7 +40,7 @@ def get_external_map_url(longitude, latitude, zoom=14):
     )
     if zoom is not None:
         params['z'] = zoom
-    return HOSTED_MAPS_URL + urllib.urlencode(params)
+    return HOSTED_MAPS_URL + urlencode(params)
 
 
 def geocode(address, timeout=2):
@@ -53,14 +54,14 @@ def geocode(address, timeout=2):
 
 def _get_geocode_json(address, timeout=2):
     url = _get_geocode_url(address)
-    response = urllib2.urlopen(url, timeout=timeout).read()
+    response = urlopen(url, timeout=timeout).read()
     return response
 
 
 def _get_geocode_url(address):
-    if isinstance(address, unicode):
+    if isinstance(address, string_types):
         address = address.encode('utf8')
-    params = urllib.urlencode({'geocode': address, 'format': 'json', 'results': 1})
+    params = urlencode({'geocode': address, 'format': 'json', 'results': 1})
     return GEOCODE_URL + params
 
 

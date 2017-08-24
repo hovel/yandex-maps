@@ -1,4 +1,5 @@
-#coding: utf-8
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from django.db import models
 from django.conf import settings
 from yandex_maps import api
@@ -15,9 +16,9 @@ def get_static_map_url(longitude, latitude, width=None, height=None, detail_leve
 
 
 class MapAndAddress(models.Model):
-    address = models.CharField(u'Адрес', max_length=255, blank=True, db_index=True)
-    longitude = models.FloatField(u'Долгота', null=True, blank=True)
-    latitude = models.FloatField(u'Широта', null=True, blank=True)
+    address = models.CharField(verbose_name='Адрес', max_length=255, blank=True, db_index=True)
+    longitude = models.FloatField(verbose_name='Долгота', null=True, blank=True)
+    latitude = models.FloatField(verbose_name='Широта', null=True, blank=True)
 
     def get_detail_level(self):
         return 5

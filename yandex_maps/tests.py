@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from unittest import TestCase
 from yandex_maps.api import _get_coords, get_map_url, geocode
 
-RESPONSE = u"""
+RESPONSE = """
 {"response":
      {"GeoObjectCollection":
           {"metaDataProperty": {"GeocoderResponseMetaData": {"request": "Москва", "found": "38", "results": "1"}},
@@ -20,7 +21,7 @@ RESPONSE = u"""
                               "Point": {"pos": "37.620393 55.75396"}}}]}}}
 """.encode('utf8')
 
-UNKNOWN_ADDRESS = u'''
+UNKNOWN_ADDRESS = '''
 {"response":
      {"GeoObjectCollection": {
          "metaDataProperty": {
@@ -29,8 +30,8 @@ UNKNOWN_ADDRESS = u'''
          "featureMember": []}}}
 '''.encode('utf8')
 
-COORDS = (u'37.620393', u'55.75396')
-MAP_URL = 'http://static-maps.yandex.ru/1.x/?ll=37.6203930,55.7539600&size=200,300&z=5&l=map&pt=37.6203930,55.7539600'
+COORDS = ('37.620393', '55.75396')
+MAP_URL = 'https://static-maps.yandex.ru/1.x/?ll=37.6203930,55.7539600&size=200,300&z=5&l=map&pt=37.6203930,55.7539600'
 
 
 class GeocodeTest(TestCase):

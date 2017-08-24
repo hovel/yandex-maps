@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from django import template
 from django.contrib.gis.geos import Point
 from django.utils.html import conditional_escape, format_html
@@ -80,6 +81,6 @@ def yandex_map(address, width, height, zoom=14, attrs=''):
 
     '''
     url = _url_for(address, False, width, height, zoom)
-    return format_html(u"<img src='{}' width='{}' height='{}' alt='{}' {} />",
+    return format_html("<img src='{}' width='{}' height='{}' alt='{}' {} />",
                        url, width, height, conditional_escape(address),
                        mark_safe(attrs))

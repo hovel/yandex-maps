@@ -23,11 +23,11 @@ yandex-maps
 
     >>> from yandex_maps import api
     >>> pos = api.geocode(u'Санкт-Петербург, Бумажная 4')
-    >>> print pos
+    >>> print(pos)
     (u'30.271446', u'59.903300')
 
     >>> api.get_map_url(api_key, pos[0], pos[1], 13, 200, 300)
-    http://static-maps.yandex.ru/1.x/?ll=30.2714460,59.9033000&size=200,300&z=12&l=map&pt=30.2714460,59.9033000
+    https://static-maps.yandex.ru/1.x/?ll=30.2714460,59.9033000&size=200,300&z=12&l=map&pt=30.2714460,59.9033000
 
 
 Интеграция с django
