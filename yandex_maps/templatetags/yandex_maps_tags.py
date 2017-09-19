@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django import template
-from django.contrib.gis.geos import Point
 from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 
 from yandex_maps.models import MapAndAddress, get_static_map_url
 from yandex_maps.api import get_external_map_url
+
+try:
+    from django.contrib.gis.geos import Point
+except ImportError:
+    class Point(object):
+        pass
 
 register = template.Library()
 
