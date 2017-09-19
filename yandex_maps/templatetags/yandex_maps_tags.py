@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django import template
+from django.core.exceptions import ImproperlyConfigured
 from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 
@@ -9,7 +10,7 @@ from yandex_maps.api import get_external_map_url
 
 try:
     from django.contrib.gis.geos import Point
-except ImportError:
+except (ImportError, ImproperlyConfigured) as e:
     class Point(object):
         pass
 
