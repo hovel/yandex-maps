@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django import template
-from django.contrib.gis.geos import Point
 from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 
@@ -11,6 +10,14 @@ from yandex_maps.api import get_external_map_url
 register = template.Library()
 
 # FIXME: этот код ужасен :)
+
+try:
+    from django.contrib.gis import geos
+except ImportError:
+    class Point(object):
+        pass
+else:
+    from django.contrib.gis.geos import Point
 
 
 def _url_for(address, external, *args, **kwargs):
