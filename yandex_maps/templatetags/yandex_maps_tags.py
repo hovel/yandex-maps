@@ -12,8 +12,8 @@ register = template.Library()
 # FIXME: этот код ужасен :)
 
 try:
-    from django.contrib.gis import geos
-except ImportError:
+    from django.contrib.gis import gdal
+except ImproperlyConfigured:
     class Point(object):
         pass
 else:
