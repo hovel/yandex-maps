@@ -5,9 +5,9 @@ from __future__ import unicode_literals
 Yandex.Maps API wrapper
 """
 import json
-from django.utils.six import text_type, binary_type
-from django.utils.six.moves.urllib.parse import urlencode
-from django.utils.six.moves.urllib.request import urlopen
+from six import text_type, binary_type
+from six.moves.urllib.parse import urlencode
+from six.moves.urllib.request import urlopen
 
 STATIC_MAPS_URL = 'https://static-maps.yandex.ru/1.x/?'
 HOSTED_MAPS_URL = 'https://maps.yandex.ru/?'
